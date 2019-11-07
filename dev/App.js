@@ -20,15 +20,34 @@ export default class App extends Component {
   };
 
   render() {
+    const advanceSetting = {
+      brand: {
+        name: 'waimao.tools',
+        link: 'https://waimao.tools',
+      },
+      launcher: {
+        bgColor: '#3021EC',
+        img: {
+          src: 'https://static-v.tawk.to/a-v3/images/bubbles/168-r-br.svg',
+          style: {
+            width: '124px',
+            height: '79px',
+            position: 'absolute',
+            right: 0,
+          }
+        },
+      },
+      header: {
+        bgColor: '#3021EC',
+      }
+    }
     return (
       <Widget
         title="Let’s chat? - We're online"
         subtitle="Welcome"
         handleNewUserMessage={this.handleNewUserMessage}
-        badge={1}
-        showBrand={false}
-        brandName=""
-        brandLink=""
+        badge={0}
+        advanceSetting={advanceSetting}
       />
     );
   }

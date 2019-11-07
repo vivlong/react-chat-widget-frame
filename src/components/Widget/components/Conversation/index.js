@@ -26,9 +26,9 @@ const Conversation = props =>
       disabledInput={props.disabledInput}
       autofocus={props.autofocus}
     />
-    {props.showBrand &&
+    {props.advanceSetting && props.advanceSetting.brand &&
       <div className="rcw-branding">
-        <span>Powered by <a href={props.brandLink} target="_blank">{props.brandName}</a></span>
+        <span>Powered by <a href={props.advanceSetting.brand.link} target="_blank">{props.advanceSetting.brand.name}</a></span>
       </div>
     }
   </div>;
@@ -44,9 +44,7 @@ Conversation.propTypes = {
   showCloseButton: PropTypes.bool,
   disabledInput: PropTypes.bool,
   autofocus: PropTypes.bool,
-  showBrand: PropTypes.bool,
-  brandName: PropTypes.string,
-  brandLink: PropTypes.string,
+  advanceSetting: PropTypes.object,
 };
 
 export default Conversation;

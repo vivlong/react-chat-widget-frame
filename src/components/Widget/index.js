@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-
-import { toggleChat, addUserMessage } from '@actions';
-
-import WidgetLayout from './layout';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { toggleChat, addUserMessage } from "@actions";
+import WidgetLayout from "./layout";
 
 class Widget extends Component {
   componentWillReceiveProps(nextProps) {
@@ -14,29 +12,29 @@ class Widget extends Component {
   }
 
   toggleConversation = () => {
-    if (typeof this.props.onToggleChat === 'function') {
+    if (typeof this.props.onToggleChat === "function") {
       this.props.onToggleChat(this.props.showChat);
     }
     this.props.dispatch(toggleChat());
-  }
+  };
 
-  handleMessageSubmit = (event) => {
+  handleMessageSubmit = event => {
     event.preventDefault();
     const userInput = event.target.message.value;
     if (userInput.trim()) {
       this.props.dispatch(addUserMessage(userInput));
       this.props.handleNewUserMessage(userInput);
     }
-    event.target.message.value = '';
-  }
+    event.target.message.value = "";
+  };
 
   handleQuickButtonClicked = (event, value) => {
     event.preventDefault();
 
-    if(this.props.handleQuickButtonClicked) {
+    if (this.props.handleQuickButtonClicked) {
       this.props.handleQuickButtonClicked(value);
     }
-  }
+  };
 
   render() {
     return (
@@ -54,9 +52,7 @@ class Widget extends Component {
         badge={this.props.badge}
         autofocus={this.props.autofocus}
         customLauncher={this.props.customLauncher}
-        showBrand={this.props.showBrand}
-        brandName={this.props.brandName}
-        brandLink={this.props.brandLink}
+        advanceSetting={this.props.advanceSetting}
       />
     );
   }
@@ -76,11 +72,9 @@ Widget.propTypes = {
   autofocus: PropTypes.bool,
   customLauncher: PropTypes.func,
   onToggleChat: PropTypes.func, // called on toggle with the old showChat status
-  showBrand: PropTypes.bool,
-  brandName: PropTypes.string,
-  brandLink: PropTypes.string,
+  advanceSetting: PropTypes.object
 };
 
 export default connect(store => ({
-  showChat: store.behavior.get('showChat'),
+  showChat: store.behavior.get("showChat")
 }))(Widget);

@@ -1,26 +1,22 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import Frame from 'react-frame-component';
-import Conversation from './components/Conversation';
-import Launcher from './components/Launcher';
-import './style.scss';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import Frame from "react-frame-component";
+import Conversation from "./components/Conversation";
+import Launcher from "./components/Launcher";
+import "./style.scss";
 
 class WidgetLayout extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      convFrameDisplay: 'none',
-      showChat: false,
+      convFrameDisplay: "none",
+      showChat: false
     };
   }
 
   componentDidMount() {
-    this.convFrame = document.querySelector('#rcw-conv-frame');
-  }
-
-  componentDidUpdate(prevProps) {
+    this.convFrame = document.querySelector("#rcw-conv-frame");
   }
 
   componentWillReceiveProps(nextProps) {
@@ -28,7 +24,7 @@ class WidgetLayout extends Component {
     const closingChat = !nextProps.showChat && this.props.showChat;
     if (openingChat) {
       clearTimeout(this.convFrameDisplayTimeout);
-      this.setState({ convFrameDisplay: 'block' });
+      this.setState({ convFrameDisplay: "block" });
       this.convFrameDisplayTimeout = setTimeout(() => {
         this.setState({ showChat: true });
       }, 50);
@@ -36,7 +32,7 @@ class WidgetLayout extends Component {
       clearTimeout(this.convFrameDisplayTimeout);
       this.setState({ showChat: false });
       this.convFrameDisplayTimeout = setTimeout(() => {
-        this.setState({ convFrameDisplay: 'none' });
+        this.setState({ convFrameDisplay: "none" });
       }, 300);
     }
   }
@@ -47,27 +43,40 @@ class WidgetLayout extends Component {
   }
 
   render() {
+    const { advanceSetting } = this.props;
     const initialFrameContent = () => {
-      return (
-        `<!DOCTYPE html>
+      return `<!DOCTYPE html>
         <html>
           <head>
-            ${document.head.innerHTML}
+            <link type='text/css' rel='stylesheet' href='https://cdn.xiaocong.vip/resources/widget/frame.css'/>
             <style>
-              body{margin:0;padding: 0;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Verdana,"Helvetica Neue",Arial,sans-serif;}
+              body {
+                margin: 0;
+                padding: 0;
+                font-family: -apple-system,BlinkMacSystemFont,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",lucida,"Segoe UI",Verdana,"Helvetica Neue",Arial,sans-serif;
+                overflow:hidden;
+              }
+              // #rcw-btn-frame {
+              //   height: 100px;
+              // }
+              .rcw-launcher {
+                background-color: ${advanceSetting.launcher.bgColor};
+              }
+              .rcw-conversation-container .rcw-header {
+                background-color: ${advanceSetting.header.bgColor};
+              }
             </style>
           </head>
           <body>
             <div></div>
           </body>
-        </html>`
-      )
-    }
+        </html>`;
+    };
     return (
       <div
-        className={
-          `rcw-widget-container ${this.props.fullScreenMode ? 'rcw-full-screen' : ''} ${this.props.showChat ? 'rcw-opened' : ''}`
-        }
+        className={`rcw-widget-container ${
+          this.props.fullScreenMode ? "rcw-full-screen" : ""
+        } ${this.props.showChat ? "rcw-opened" : ""}`}
       >
         <Frame
           initialContent={initialFrameContent()}
@@ -88,9 +97,7 @@ class WidgetLayout extends Component {
             disabledInput={this.props.disabledInput}
             autofocus={this.props.autofocus}
             titleAvatar={this.props.titleAvatar}
-            showBrand={this.props.showBrand}
-            brandName={this.props.brandName}
-            brandLink={this.props.brandLink}
+            advanceSetting={this.props.advanceSetting}
           />
         </Frame>
         <Frame
@@ -98,14 +105,15 @@ class WidgetLayout extends Component {
           id="rcw-btn-frame"
           aria-live="polite"
         >
-          {this.props.customLauncher ?
-            this.props.customLauncher(this.props.onToggleConversation) :
-            !this.props.fullScreenMode &&
-            <Launcher
-              toggle={this.props.onToggleConversation}
-              badge={this.props.badge}
-            />
-          }
+          {this.props.customLauncher
+            ? this.props.customLauncher(this.props.onToggleConversation)
+            : !this.props.fullScreenMode && (
+                <Launcher
+                  toggle={this.props.onToggleConversation}
+                  badge={this.props.badge}
+                  advanceSetting={this.props.advanceSetting}
+                />
+              )}
         </Frame>
       </div>
     );
@@ -128,12 +136,10 @@ WidgetLayout.propTypes = {
   badge: PropTypes.number,
   autofocus: PropTypes.bool,
   customLauncher: PropTypes.func,
-  showBrand: PropTypes.bool,
-  brandName: PropTypes.string,
-  brandLink: PropTypes.string,
+  advanceSetting: PropTypes.object
 };
 
 export default connect(store => ({
-  showChat: store.behavior.get('showChat'),
-  disabledInput: store.behavior.get('disabledInput')
+  showChat: store.behavior.get("showChat"),
+  disabledInput: store.behavior.get("disabledInput")
 }))(WidgetLayout);

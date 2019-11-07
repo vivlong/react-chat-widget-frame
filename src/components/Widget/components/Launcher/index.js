@@ -7,19 +7,25 @@ import close from '@assets/clear-button.svg';
 import Badge from './components/Badge';
 import './style.scss';
 
-const Launcher = ({ toggle, chatOpened, badge }) =>
-  <button type="button" className={chatOpened ? 'rcw-launcher rcw-hide-sm' : 'rcw-launcher'} onClick={toggle}>
-    <Badge badge={badge} />
-    {chatOpened ?
-      <img src={close} className="rcw-close-launcher" alt="" /> :
-      <img src={openLauncher} className="rcw-open-launcher" alt="" />
+const Launcher = ({ toggle, chatOpened, badge, advanceSetting }) =>
+  <div>
+    {advanceSetting && advanceSetting.launcher && advanceSetting.launcher.img &&
+      <img src={advanceSetting.launcher.img.src} style={advanceSetting.launcher.img.style}/>
     }
-  </button>;
+    <button type="button" className={chatOpened ? 'rcw-launcher rcw-hide-sm' : 'rcw-launcher'} onClick={toggle}>
+      <Badge badge={badge} />
+      {chatOpened ?
+        <img src={close} className="rcw-close-launcher" alt="" /> :
+        <img src={openLauncher} className="rcw-open-launcher" alt="" />
+      }
+    </button>
+  </div>;
 
 Launcher.propTypes = {
   toggle: PropTypes.func,
   chatOpened: PropTypes.bool,
-  badge: PropTypes.number
+  badge: PropTypes.number,
+  advanceSetting: PropTypes.object,
 };
 
 export default connect(store => ({

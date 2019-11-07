@@ -2,27 +2,36 @@
 @import 'common.scss';
 
 body {
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system,BlinkMacSystemFont,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",lucida,"Segoe UI",Verdana,"Helvetica Neue",Arial,sans-serif;
 }
 
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px
 }
+
 ::-webkit-scrollbar-button:vertical {
   display: none
 }
-::-webkit-scrollbar-corner, ::-webkit-scrollbar-track {
+
+::-webkit-scrollbar-corner,
+::-webkit-scrollbar-track {
   background-color: #e2e2e2
 }
+
 ::-webkit-scrollbar-thumb {
   border-radius: 0;
   background-color: rgba(0, 0, 0, .3)
 }
+
 ::-webkit-scrollbar-thumb:vertical:hover {
   background-color: rgba(0, 0, 0, .35)
 }
+
 ::-webkit-scrollbar-thumb:vertical:active {
   background-color: rgba(0, 0, 0, .38)
 }
@@ -42,7 +51,9 @@ body {
   width: 90vw;
 }
 
-#rcw-btn-frame, #rcw-conv-frame, #rcw-trigger-frame {
+#rcw-btn-frame,
+#rcw-conv-frame,
+#rcw-trigger-frame {
   border: 0;
   box-sizing: border-box;
 }
@@ -54,11 +65,9 @@ body {
 }
 
 #rcw-conv-frame {
-  bottom: 95px;
   min-height: 350px;
   height: 550px;
   width: 375px;
-  right: 15px;
   transform: translateY(10px) translateZ(0);
   border-radius: 10px;
   border: 1px solid #e9e9e9;
