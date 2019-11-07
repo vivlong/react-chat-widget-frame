@@ -26,11 +26,11 @@ const Conversation = props =>
       disabledInput={props.disabledInput}
       autofocus={props.autofocus}
     />
-    <div className="rcw-branding">
-      {/* <img src={inLogo} alt="infoset" /> */}
-      <span>Powered by
-      <a href="https://waimao.tools" target="_blank">waimao.tools</a></span>
-    </div>
+    {props.showBrand &&
+      <div className="rcw-branding">
+        <span>Powered by <a href={props.brandLink} target="_blank">{props.brandName}</a></span>
+      </div>
+    }
   </div>;
 
 Conversation.propTypes = {
@@ -43,7 +43,10 @@ Conversation.propTypes = {
   toggleChat: PropTypes.func,
   showCloseButton: PropTypes.bool,
   disabledInput: PropTypes.bool,
-  autofocus: PropTypes.bool
+  autofocus: PropTypes.bool,
+  showBrand: PropTypes.bool,
+  brandName: PropTypes.string,
+  brandLink: PropTypes.string,
 };
 
 export default Conversation;

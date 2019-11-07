@@ -54,6 +54,9 @@ class Widget extends Component {
         badge={this.props.badge}
         autofocus={this.props.autofocus}
         customLauncher={this.props.customLauncher}
+        showBrand={this.props.showBrand}
+        brandName={this.props.brandName}
+        brandLink={this.props.brandLink}
       />
     );
   }
@@ -73,6 +76,9 @@ Widget.propTypes = {
   autofocus: PropTypes.bool,
   customLauncher: PropTypes.func,
   onToggleChat: PropTypes.func, // called on toggle with the old showChat status
+  showBrand: PropTypes.bool,
+  brandName: PropTypes.string,
+  brandLink: PropTypes.string,
 };
 
 export default connect(store => ({

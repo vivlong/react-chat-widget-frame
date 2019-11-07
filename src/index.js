@@ -7,20 +7,7 @@ import store from '../src/store/store';
 
 const ConnectedWidget = props =>
   <Provider store={store}>
-    <Widget
-      title={props.title}
-      titleAvatar={props.titleAvatar}
-      subtitle={props.subtitle}
-      handleNewUserMessage={props.handleNewUserMessage}
-      handleQuickButtonClicked={props.handleQuickButtonClicked}
-      senderPlaceHolder={props.senderPlaceHolder}
-      profileAvatar={props.profileAvatar}
-      showCloseButton={props.showCloseButton}
-      fullScreenMode={props.fullScreenMode}
-      badge={props.badge}
-      autofocus={props.autofocus}
-      customLauncher={props.launcher}
-    />
+    <Widget {...props} />
   </Provider>;
 
 ConnectedWidget.propTypes = {
@@ -37,16 +24,22 @@ ConnectedWidget.propTypes = {
   autofocus: PropTypes.bool,
   launcher: PropTypes.func,
   onToggleChat: PropTypes.func,
+  showBrand: PropTypes.bool,
+  brandName: PropTypes.string,
+  brandLink: PropTypes.string,
 };
 
 ConnectedWidget.defaultProps = {
   title: 'Welcome',
-  subtitle: 'This is your chat subtitle',
+  subtitle: 'chat with us onilne',
   senderPlaceHolder: 'Type a message...',
   showCloseButton: false,
   fullScreenMode: false,
   badge: 0,
-  autofocus: true
+  autofocus: true,
+  showBrand: false,
+  brandName: '',
+  brandLink: '',
 };
 
 export default ConnectedWidget;

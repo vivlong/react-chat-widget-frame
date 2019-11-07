@@ -1,27 +1,20 @@
-# react-chat-widget
-[![circle-ci](https://img.shields.io/circleci/project/github/Wolox/react-chat-widget.svg)](https://circleci.com/gh/Wolox/react-chat-widget)
-[![npm](https://img.shields.io/npm/v/react-chat-widget.svg)](https://www.npmjs.com/package/react-chat-widget)
+# react-chat-widget-frame
+[![circle-ci](https://img.shields.io/circleci/project/github/Wolox/react-chat-widget.svg)](https://circleci.com/gh/Wolox/react-chat-widget-frame)
+[![npm](https://img.shields.io/npm/v/react-chat-widget.svg)](https://www.npmjs.com/package/react-chat-widget-frame)
 
-[![FEArmy](./assets/FEA_open_source_sm.png)](https://github.com/orgs/Wolox/teams/front-end-army/members)
 ## Features
 
 - Plain text message UI
 - Snippet style for links (only as responses for now)
 - Fully customizable
 - Easy to use
-
-![demonstration](./assets/chat-demonstration.gif)
+- React frame support
 
 ## Installation
 
 #### npm
 ```bash
-npm install --save react-chat-widget
-```
-
-#### yarn
-```bash
-yarn add react-chat-widget
+npm install --save react-chat-widget-frame
 ```
 
 ## Usage
@@ -30,9 +23,9 @@ yarn add react-chat-widget
 
 ```js
 import React, { Component } from 'react';
-import { Widget } from 'react-chat-widget';
+import { Widget } from 'react-chat-widget-frame';
 
-import 'react-chat-widget/lib/styles.css';
+import 'react-chat-widget-frame/lib/styles.css';
 
 class App extends Component {
   render() {
@@ -51,9 +44,9 @@ export default App;
 
 ```js
 import React, { Component } from 'react';
-import { Widget } from 'react-chat-widget';
+import { Widget } from 'react-chat-widget-frame';
 
-import 'react-chat-widget/lib/styles.css';
+import 'react-chat-widget-frame/lib/styles.css';
 
 class App extends Component {
   handleNewUserMessage = (newMessage) => {
@@ -79,9 +72,9 @@ export default App;
 
 ```js
 import React, { Component } from 'react';
-import { Widget, addResponseMessage } from 'react-chat-widget';
+import { Widget, addResponseMessage } from 'react-chat-widget-frame';
 
-import 'react-chat-widget/lib/styles.css';
+import 'react-chat-widget-frame/lib/styles.css';
 
 class App extends Component {
   componentDidMount() {
@@ -102,7 +95,7 @@ class App extends Component {
         />
       </div>
     );
-  } 
+  }
 }
 
 export default App;
@@ -112,9 +105,9 @@ export default App;
 
 ```js
 import React, { Component } from 'react';
-import { Widget, addResponseMessage, addLinkSnippet, addUserMessage } from 'react-chat-widget';
+import { Widget, addResponseMessage, addLinkSnippet, addUserMessage } from 'react-chat-widget-frame';
 
-import 'react-chat-widget/lib/styles.css';
+import 'react-chat-widget-frame/lib/styles.css';
 
 import logo from './logo.svg';
 
@@ -139,7 +132,7 @@ class App extends Component {
         />
       </div>
     );
-  } 
+  }
 }
 
 export default App;
@@ -192,7 +185,7 @@ If you want to add new messages, you can use the following methods:
   - Method to add a new message written as a response to a user input.
 
 - **addUserMessage**
-  - params: 
+  - params:
     - text
   - This method will add a new message written as a user. Keep in mind it will not trigger the prop handleNewUserMessage()
 
@@ -203,14 +196,14 @@ If you want to add new messages, you can use the following methods:
     ```js
     {
       title: 'My awesome link',
-      link: 'https://github.com/Wolox/react-chat-widget',
+      link: 'https://github.com/Wolox/react-chat-widget-frame',
       target: '_blank'
     }
     ```
   - By default, `target` value is `_blank` which will open the link in a new window.
 
 - **renderCustomComponent**
-  - params: 
+  - params:
     - component: Component to be render,
     - props: props the component needs,
     - showAvatar: boolean, default value: false; the component will be rendered with the avatar like the messages
@@ -255,6 +248,4 @@ For example, if you want to use a simple button to toggle the widget:
 
 ## About
 
-This project is maintained by [Martín Callegari](https://github.com/mcallegari10) and it was written by [Wolox](http://www.wolox.com.ar).
-
-![Wolox](https://raw.githubusercontent.com/Wolox/press-kit/master/logos/logo_banner.png)
+This project is update by [vivlong](https://github.com/vivlong) and it was written by [Wolox](http://www.wolox.com.ar).

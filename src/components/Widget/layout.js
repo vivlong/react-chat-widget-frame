@@ -88,6 +88,9 @@ class WidgetLayout extends Component {
             disabledInput={this.props.disabledInput}
             autofocus={this.props.autofocus}
             titleAvatar={this.props.titleAvatar}
+            showBrand={this.props.showBrand}
+            brandName={this.props.brandName}
+            brandLink={this.props.brandLink}
           />
         </Frame>
         <Frame
@@ -125,6 +128,9 @@ WidgetLayout.propTypes = {
   badge: PropTypes.number,
   autofocus: PropTypes.bool,
   customLauncher: PropTypes.func,
+  showBrand: PropTypes.bool,
+  brandName: PropTypes.string,
+  brandLink: PropTypes.string,
 };
 
 export default connect(store => ({
