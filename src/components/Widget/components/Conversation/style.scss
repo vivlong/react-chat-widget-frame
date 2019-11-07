@@ -5,7 +5,19 @@
 .rcw-conversation-container {
   @include animation(0, 0.5s, slide-in);
   border-radius: 10px;
-  box-shadow: 0px 2px 10px 1px $grey-3;
+}
+
+.rcw-opened #rcw-conv-frame {
+  z-index: 2147483647;
+  pointer-events: all;
+  transform: translateY(0);
+  opacity: 1 !important;
+
+  @media screen and (max-width: 768px) {
+    box-shadow: 0;
+    border-radius: 0;
+    right: 0 !important;
+  }
 }
 
 .rcw-slide-out {
@@ -15,6 +27,35 @@
 .rcw-full-screen {
   .rcw-conversation-container {
     @include conversation-container-fs;
+  }
+}
+
+.rcw-branding {
+  @include hover-bg;
+  // position: absolute;
+  // bottom: 7px;
+  // left: 50%;
+  // padding: 0.5em 0.65em;
+  padding: 0.4em 0.65em;
+  // transform: translateX(-50%);
+  font-size: 12px;
+  opacity: 0.5;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+
+  img {
+    height: 12px;
+    width: auto;
+    margin-right: 0.3em;
+  }
+
+  a {
+    text-decoration: none;
+    color: $blue;
+    margin-left: 0.15em;
   }
 }
 

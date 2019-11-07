@@ -1,6 +1,32 @@
 @import 'animation.scss';
 @import 'common.scss';
 
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px
+}
+::-webkit-scrollbar-button:vertical {
+  display: none
+}
+::-webkit-scrollbar-corner, ::-webkit-scrollbar-track {
+  background-color: #e2e2e2
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, .3)
+}
+::-webkit-scrollbar-thumb:vertical:hover {
+  background-color: rgba(0, 0, 0, .35)
+}
+::-webkit-scrollbar-thumb:vertical:active {
+  background-color: rgba(0, 0, 0, .38)
+}
+
 .rcw-widget-container {
   bottom: 0;
   display: flex;
@@ -16,6 +42,35 @@
   width: 90vw;
 }
 
+#rcw-btn-frame, #rcw-conv-frame, #rcw-trigger-frame {
+  border: 0;
+  box-sizing: border-box;
+}
+
+@mixin hidden() {
+  z-index: -100;
+  pointer-events: none;
+  opacity: 0;
+}
+
+#rcw-conv-frame {
+  bottom: 95px;
+  min-height: 350px;
+  height: 550px;
+  width: 375px;
+  right: 15px;
+  transform: translateY(10px) translateZ(0);
+  border-radius: 10px;
+  border: 1px solid #e9e9e9;
+  transform-origin: bottom;
+  transition: transform 300ms ease-out, opacity 300ms ease-out, box-shadow 300ms ease-out;
+  @include hidden;
+}
+
+#rcw-btn-frame {
+  height: 100px;
+}
+
 .rcw-full-screen {
   @include widget-container-fs;
 
@@ -28,6 +83,16 @@
 @media screen and (max-width: 800px) {
   .rcw-widget-container {
     @include widget-container-fs;
+
+    #rcw-conv-frame {
+      @include full-height;
+      width: 100vw;
+      bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      border-radius: 0;
+    }
 
     &.rcw-opened {
       height: 100%;

@@ -35,14 +35,15 @@ ConnectedWidget.propTypes = {
   fullScreenMode: PropTypes.bool,
   badge: PropTypes.number,
   autofocus: PropTypes.bool,
-  launcher: PropTypes.func
+  launcher: PropTypes.func,
+  onToggleChat: PropTypes.func,
 };
 
 ConnectedWidget.defaultProps = {
   title: 'Welcome',
   subtitle: 'This is your chat subtitle',
   senderPlaceHolder: 'Type a message...',
-  showCloseButton: true,
+  showCloseButton: false,
   fullScreenMode: false,
   badge: 0,
   autofocus: true

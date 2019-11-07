@@ -14,6 +14,9 @@ class Widget extends Component {
   }
 
   toggleConversation = () => {
+    if (typeof this.props.onToggleChat === 'function') {
+      this.props.onToggleChat(this.props.showChat);
+    }
     this.props.dispatch(toggleChat());
   }
 
@@ -61,14 +64,17 @@ Widget.propTypes = {
   titleAvatar: PropTypes.string,
   subtitle: PropTypes.string,
   handleNewUserMessage: PropTypes.func.isRequired,
-  handleQuickButtonClicked: PropTypes.func.isRequired,
+  handleQuickButtonClicked: PropTypes.func,
   senderPlaceHolder: PropTypes.string,
   profileAvatar: PropTypes.string,
   showCloseButton: PropTypes.bool,
   fullScreenMode: PropTypes.bool,
   badge: PropTypes.number,
   autofocus: PropTypes.bool,
-  customLauncher: PropTypes.func
+  customLauncher: PropTypes.func,
+  onToggleChat: PropTypes.func, // called on toggle with the old showChat status
 };
 
-export default connect()(Widget);
+export default connect(store => ({
+  showChat: store.behavior.get('showChat'),
+}))(Widget);

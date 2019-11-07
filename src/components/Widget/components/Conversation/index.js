@@ -26,6 +26,11 @@ const Conversation = props =>
       disabledInput={props.disabledInput}
       autofocus={props.autofocus}
     />
+    <div className="rcw-branding">
+      {/* <img src={inLogo} alt="infoset" /> */}
+      <span>Powered by
+      <a href="https://waimao.tools" target="_blank">waimao.tools</a></span>
+    </div>
   </div>;
 
 Conversation.propTypes = {
