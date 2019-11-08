@@ -8,7 +8,7 @@ import './style.scss';
 
 const Header = ({ title, subtitle, toggleChat, showCloseButton, titleAvatar }) =>
   <div className="rcw-header">
-    {showCloseButton &&
+    {(showCloseButton || window.innerWidth < 768) &&
       <button className="rcw-close-button" onClick={toggleChat}>
         <img src={close} className="rcw-close" alt="close" />
       </button>

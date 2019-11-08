@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import Header from './components/Header';
 import Messages from './components/Messages';
 import Sender from './components/Sender';
@@ -8,7 +7,7 @@ import QuickButtons from './components/QuickButtons';
 import './style.scss';
 
 const Conversation = props =>
-  <div className="rcw-conversation-container">
+  <div className={`rcw-conversation-container ${window.innerWidth < 768 ? 'rcw-mobile' : ''}`}>
     <Header
       title={props.title}
       subtitle={props.subtitle}

@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import send from '@assets/send_button.svg';
-
 import './style.scss';
 
 class Sender extends Component{
   input = React.createRef();
 
   componentDidUpdate() {
-    this.input.current.focus();
+    if(this.props.autofocus) this.input.current.focus();
   }
 
   render() {

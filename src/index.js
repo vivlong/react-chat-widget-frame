@@ -24,9 +24,7 @@ ConnectedWidget.propTypes = {
   autofocus: PropTypes.bool,
   launcher: PropTypes.func,
   onToggleChat: PropTypes.func,
-  showBrand: PropTypes.bool,
-  brandName: PropTypes.string,
-  brandLink: PropTypes.string,
+  advanceSetting: PropTypes.object
 };
 
 ConnectedWidget.defaultProps = {
@@ -36,10 +34,8 @@ ConnectedWidget.defaultProps = {
   showCloseButton: false,
   fullScreenMode: false,
   badge: 0,
-  autofocus: true,
-  showBrand: false,
-  brandName: '',
-  brandLink: '',
+  autofocus: false,
+  advanceSetting: null,
 };
 
 export default ConnectedWidget;

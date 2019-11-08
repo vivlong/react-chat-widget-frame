@@ -45,10 +45,11 @@ class WidgetLayout extends Component {
   render() {
     const { advanceSetting } = this.props;
     const initialFrameContent = () => {
+      //${document.head.innerHTML}
       return `<!DOCTYPE html>
         <html>
           <head>
-            <link type='text/css' rel='stylesheet' href='https://cdn.xiaocong.vip/resources/widget/frame.css'/>
+            <link type='text/css' rel='stylesheet' href='https://cdn.xiaocong.vip/resources/widget/2.0.2/styles.css'/>
             <style>
               body {
                 margin: 0;
@@ -56,13 +57,13 @@ class WidgetLayout extends Component {
                 font-family: -apple-system,BlinkMacSystemFont,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",lucida,"Segoe UI",Verdana,"Helvetica Neue",Arial,sans-serif;
                 overflow:hidden;
               }
-              // #rcw-btn-frame {
-              //   height: 100px;
-              // }
               .rcw-launcher {
                 background-color: ${advanceSetting.launcher.bgColor};
               }
               .rcw-conversation-container .rcw-header {
+                background-color: ${advanceSetting.header.bgColor};
+              }
+              .rcw-conversation-container .rcw-close-button {
                 background-color: ${advanceSetting.header.bgColor};
               }
             </style>
@@ -74,9 +75,7 @@ class WidgetLayout extends Component {
     };
     return (
       <div
-        className={`rcw-widget-container ${
-          this.props.fullScreenMode ? "rcw-full-screen" : ""
-        } ${this.props.showChat ? "rcw-opened" : ""}`}
+        className={`rcw-widget-container ${this.props.showChat ? "rcw-opened" : ""}`}
       >
         <Frame
           initialContent={initialFrameContent()}

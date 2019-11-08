@@ -27,13 +27,13 @@
   @include animation(0, 0.5s, rotation-lr);
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 768px) {
 
-  // .rcw-opened #rcw-btn-frame {
-  //   display: none;
-  //   z-index: -100;
-  //   pointer-events: none;
-  // }
+  .rcw-opened #rcw-btn-frame {
+    display: none;
+    z-index: -100;
+    pointer-events: none;
+  }
 
   .rcw-launcher {
     @include launcher-fs;

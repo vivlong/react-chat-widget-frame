@@ -28,7 +28,7 @@ export default class App extends Component {
       launcher: {
         bgColor: '#3021EC',
         img: {
-          src: 'https://static-v.tawk.to/a-v3/images/bubbles/168-r-br.svg',
+          src: 'https://cdn.xiaocong.vip/resources/widget/2.0.2/images/wah.svg',
           style: {
             width: '124px',
             height: '79px',

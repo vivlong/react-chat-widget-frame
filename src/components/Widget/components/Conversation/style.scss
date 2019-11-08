@@ -12,12 +12,6 @@
   pointer-events: all;
   transform: translateY(0);
   opacity: 1 !important;
-
-  @media screen and (max-width: 768px) {
-    box-shadow: 0;
-    border-radius: 0;
-    right: 0 !important;
-  }
 }
 
 .rcw-slide-out {
@@ -45,6 +39,7 @@
   align-items: center;
   justify-content: center;
   white-space: nowrap;
+  background: transparent;
 
   img {
     height: 12px;
@@ -59,7 +54,26 @@
   }
 }
 
-@media screen and (max-width: 800px) {
+.rcw-mobile {
+  .rcw-messages-container {
+    border: 0;
+  }
+  .rcw-sender {
+    border-radius: 0;
+  }
+  .rcw-branding {
+    display: none;
+    z-index: -100;
+    pointer-events: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .rcw-opened #rcw-conv-frame {
+    box-shadow: 0;
+    border-radius: 0;
+    right: 0 !important;
+  }
   .rcw-conversation-container {
     @include conversation-container-fs;
   }
