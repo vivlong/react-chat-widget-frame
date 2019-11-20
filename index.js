@@ -9,7 +9,8 @@ import {
   toggleMsgLoader,
   dropMessages,
   isWidgetOpened,
-  setQuickButtons
+  setQuickButtons,
+  showMsgBubble
 } from './src/store/dispatcher';
 
 export {
@@ -23,5 +24,6 @@ export {
   toggleMsgLoader,
   dropMessages,
   isWidgetOpened,
-  setQuickButtons
+  setQuickButtons,
+  showMsgBubble
 };

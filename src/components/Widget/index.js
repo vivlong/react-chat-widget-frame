@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { toggleChat, addUserMessage } from "@actions";
+import { toggleChat, addUserMessage, showMsgBubble } from "@actions";
 import WidgetLayout from "./layout";
 
 class Widget extends Component {
@@ -36,6 +36,10 @@ class Widget extends Component {
     }
   };
 
+  closeMessageBubble = () => {
+    this.props.dispatch(showMsgBubble());
+  }
+
   render() {
     return (
       <WidgetLayout
@@ -53,6 +57,7 @@ class Widget extends Component {
         autofocus={this.props.autofocus}
         customLauncher={this.props.customLauncher}
         advanceSetting={this.props.advanceSetting}
+        onCloseMessageBubble={this.closeMessageBubble}
       />
     );
   }

@@ -4,7 +4,7 @@ import { createReducer } from '@utils/store';
 
 import * as actionTypes from '../actions/actionTypes';
 
-const initialState = Map({ showChat: false, disabledInput: false, msgLoader: false });
+const initialState = Map({ showChat: false, disabledInput: false, msgLoader: false, showBubble: false });
 
 const behaviorReducer = {
   [actionTypes.TOGGLE_CHAT]: state =>
@@ -14,7 +14,10 @@ const behaviorReducer = {
     state.update('disabledInput', disabledInput => !disabledInput),
 
   [actionTypes.TOGGLE_MSG_LOADER]: state =>
-    state.update('msgLoader', msgLoader => !msgLoader)
+    state.update('msgLoader', msgLoader => !msgLoader),
+
+  [actionTypes.SHOW_MSG_BUBBLE]: state =>
+    state.update('showBubble', showBubble => !showBubble)
 };
 
 export default (state = initialState, action) => createReducer(behaviorReducer, state, action);

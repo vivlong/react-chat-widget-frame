@@ -36,6 +36,17 @@ body {
   background-color: rgba(0, 0, 0, .38)
 }
 
+button:focus,
+button:active:focus,
+button.active:focus,
+button.focus,
+button:active.focus,
+button.active.focus {
+  outline: none;
+  border-color: transparent;
+  box-shadow:none;
+}
+
 .rcw-widget-container {
   bottom: 0;
   display: flex;
@@ -53,6 +64,7 @@ body {
 
 #rcw-btn-frame,
 #rcw-conv-frame,
+#rcw-msg-bubble-frame,
 #rcw-trigger-frame {
   border: 0;
   box-sizing: border-box;
@@ -68,6 +80,15 @@ body {
   min-height: 350px;
   height: 550px;
   width: 375px;
+  transform: translateY(10px) translateZ(0);
+  border-radius: 10px;
+  transform-origin: bottom;
+  transition: transform 300ms ease-out, opacity 300ms ease-out, box-shadow 300ms ease-out;
+  @include hidden;
+}
+
+#rcw-msg-bubble-frame {
+  width: auto;
   transform: translateY(10px) translateZ(0);
   border-radius: 10px;
   transform-origin: bottom;
@@ -92,7 +113,7 @@ body {
   .rcw-widget-container {
     @include widget-container-fs;
 
-    #rcw-conv-frame {
+    #rcw-conv-frame, #rcw-msg-bubble-frame {
       @include full-height;
       width: 100vw;
       bottom: 0;

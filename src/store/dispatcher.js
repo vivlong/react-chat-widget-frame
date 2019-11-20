@@ -40,3 +40,7 @@ export function isWidgetOpened() {
 export function setQuickButtons(buttons) {
   store.dispatch(actions.setQuickButtons(buttons));
 }
+
+export function showMsgBubble() {
+  store.dispatch(actions.showMsgBubble());
+}

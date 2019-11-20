@@ -6,7 +6,7 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = List([]);
 
 const quickButtonsReducer = {
-  [actionTypes.SET_QUICK_BUTTONS]: ( state, action ) => 
+  [actionTypes.SET_QUICK_BUTTONS]: ( state, action ) =>
     List(action.buttons.map(button => createQuickButton(button)))
 }
 

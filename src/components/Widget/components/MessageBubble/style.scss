@@ -1,0 +1,110 @@
+@import 'common.scss';
+@import 'variables.scss';
+@import 'animation.scss';
+
+.rcw-msg-bubble-show #rcw-msg-bubble-frame {
+  z-index: 2147483647;
+  pointer-events: all;
+  transform: translateY(0);
+  opacity: 1 !important;
+}
+
+.message-bubble-frame {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-bottom: 20px;
+
+  .initial-message-bubble {
+    cursor: pointer;
+    position: relative;
+    border: 1px solid #eaf0f6;
+    background: #fff;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .1);
+    border-radius: 4px;
+    width: 240px;
+    padding: 24px 16px 16px;
+  }
+
+  .initial-message-bubble .initial-message-close-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: #7c98b6;
+    width: 16px;
+    z-index: 2;
+    background: none;
+    border: 0;
+    padding: 0;
+    text-align: inherit;
+    text-transform: inherit;
+    cursor: pointer;
+  }
+
+  .initial-message-bubble .initial-message-avatar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -24px;
+  }
+
+  .justify-center {
+    display: flex;
+    justify-content: center !important;
+  }
+
+  .chat-head {
+    position: relative;
+  }
+
+  .chat-head-avatar-wrapper {
+    -webkit-box-align: center;
+    align-items: center;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    display: flex;
+    font-size: initial;
+    height: 48px;
+    position: relative;
+    width: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .initial-message-text {
+    white-space: pre-line;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: 0 !important;
+    margin-top: 4px !important;
+  }
+
+  .private-image {
+    vertical-align: middle;
+    display: block;
+    height: auto;
+    max-width: 100%;
+  }
+
+  .initial-bubble-tail-wrapper {
+    position: absolute;
+    bottom: -20px;
+    left: inherit;
+    right: 80px;
+  }
+
+  p {
+    font-weight: 300;
+    font-size: 14px;
+    color: #33475b;
+    line-height: 24px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .rcw-msg-bubble-show #rcw-msg-bubble-frame {
+    box-shadow: 0;
+    border-radius: 0;
+    right: 0 !important;
+  }
+}
