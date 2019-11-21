@@ -50,37 +50,22 @@
 
   .justify-center {
     display: flex;
-    justify-content: center !important;
+    justify-content: center;
   }
 
   .chat-head {
     position: relative;
   }
 
-  .chat-head-avatar-wrapper {
-    -webkit-box-align: center;
-    align-items: center;
-    box-sizing: border-box;
-    color: rgb(255, 255, 255);
-    display: flex;
-    font-size: initial;
-    height: 48px;
-    position: relative;
-    width: 48px;
-    border-radius: 50%;
-    overflow: hidden;
-  }
-
   .initial-message-text {
     white-space: pre-line;
     text-overflow: ellipsis;
     overflow: hidden;
-    margin-bottom: 0 !important;
-    margin-top: 4px !important;
+    margin-bottom: 0;
+    margin-top: 4px;
   }
 
   .private-image {
-    vertical-align: middle;
     display: block;
     height: auto;
     max-width: 100%;

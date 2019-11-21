@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { toggleChat, addUserMessage, showMsgBubble } from "@actions";
-import WidgetLayout from "./layout";
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import {toggleChat, addUserMessage, showMsgBubble} from '@actions';
+import WidgetLayout from './layout';
 
 class Widget extends Component {
   componentWillReceiveProps(nextProps) {
@@ -12,7 +12,7 @@ class Widget extends Component {
   }
 
   toggleConversation = () => {
-    if (typeof this.props.onToggleChat === "function") {
+    if (typeof this.props.onToggleChat === 'function') {
       this.props.onToggleChat(this.props.showChat);
     }
     this.props.dispatch(toggleChat());
@@ -25,7 +25,7 @@ class Widget extends Component {
       this.props.dispatch(addUserMessage(userInput));
       this.props.handleNewUserMessage(userInput);
     }
-    event.target.message.value = "";
+    event.target.message.value = '';
   };
 
   handleQuickButtonClicked = (event, value) => {
@@ -38,7 +38,7 @@ class Widget extends Component {
 
   closeMessageBubble = () => {
     this.props.dispatch(showMsgBubble());
-  }
+  };
 
   render() {
     return (
@@ -77,9 +77,9 @@ Widget.propTypes = {
   autofocus: PropTypes.bool,
   customLauncher: PropTypes.func,
   onToggleChat: PropTypes.func, // called on toggle with the old showChat status
-  advanceSetting: PropTypes.object
+  advanceSetting: PropTypes.object,
 };
 
 export default connect(store => ({
-  showChat: store.behavior.get("showChat")
+  showChat: store.behavior.get('showChat'),
 }))(Widget);

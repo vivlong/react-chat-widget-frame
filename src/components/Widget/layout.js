@@ -1,31 +1,33 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import Frame from "react-frame-component";
-// import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
-import Conversation from "./components/Conversation";
-import Launcher from "./components/Launcher";
-import MessageBubble from "./components/MessageBubble";
-import  "./style.scss";
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import Frame from 'react-frame-component';
+import {
+  disableBodyScroll,
+  enableBodyScroll,
+  clearAllBodyScrollLocks,
+} from 'body-scroll-lock';
+import Conversation from './components/Conversation';
+import Launcher from './components/Launcher';
+import MessageBubble from './components/MessageBubble';
+import './style.scss';
 
 class WidgetLayout extends Component {
-
-  // messagesCtrRef = React.createRef();
+  messagesCtrRef = React.createRef();
   convFrameDisplayTimeout = null;
   msgBubbleFrameDisplayTimeout = null;
 
   constructor(props) {
     super(props);
     this.state = {
-      convFrameDisplay: "none",
-      msgBubbleFrameDisplay: "none",
+      convFrameDisplay: 'none',
+      msgBubbleFrameDisplay: 'none',
       showChat: false,
-      showBubble: false
+      showBubble: false,
     };
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   componentWillReceiveProps(nextProps) {
     const openingChat = nextProps.showChat && !this.props.showChat;
@@ -33,58 +35,60 @@ class WidgetLayout extends Component {
     if (openingChat) {
       clearTimeout(this.msgBubbleFrameDisplayTimeout);
       clearTimeout(this.convFrameDisplayTimeout);
-      this.setState({ convFrameDisplay: "block", msgBubbleFrameDisplay: "none" });
+      this.setState({convFrameDisplay: 'block', msgBubbleFrameDisplay: 'none'});
       this.convFrameDisplayTimeout = setTimeout(() => {
-        this.setState({ showChat: true, showBubble: false });
+        this.setState({showChat: true, showBubble: false});
       }, 50);
     } else if (closingChat) {
       clearTimeout(this.convFrameDisplayTimeout);
-      this.setState({ showChat: false });
+      this.setState({showChat: false});
       this.convFrameDisplayTimeout = setTimeout(() => {
-        this.setState({ convFrameDisplay: "none" });
+        this.setState({convFrameDisplay: 'none'});
       }, 300);
     }
     const openingBubble = nextProps.showBubble && !this.props.showBubble;
     const closingBubble = !nextProps.showBubble && this.props.showBubble;
     if (openingBubble && !this.props.showChat) {
       clearTimeout(this.msgBubbleFrameDisplayTimeout);
-      this.setState({ msgBubbleFrameDisplay: "block" });
+      this.setState({msgBubbleFrameDisplay: 'block'});
       this.msgBubbleFrameDisplayTimeout = setTimeout(() => {
-        this.setState({ showBubble: true });
+        this.setState({showBubble: true});
       }, 50);
     } else if (closingBubble && !this.props.showChat) {
       clearTimeout(this.msgBubbleFrameDisplayTimeout);
-      this.setState({ showBubble: false });
+      this.setState({showBubble: false});
       this.msgBubbleFrameDisplayTimeout = setTimeout(() => {
-        this.setState({ msgBubbleFrameDisplay: "none" });
+        this.setState({msgBubbleFrameDisplay: 'none'});
       }, 300);
     }
-    // if (window.innerWidth < 768) {
-    //   if (openingChat) {
-    //     disableBodyScroll(this.messagesCtrRef.current);
-    //   } else if (closingChat) {
-    //     enableBodyScroll(this.messagesCtrRef.current);
-    //   }
-    // }
+    if (window.innerWidth < 768) {
+      if (openingChat) {
+        disableBodyScroll(this.messagesCtrRef.current);
+      } else if (closingChat) {
+        enableBodyScroll(this.messagesCtrRef.current);
+      }
+    }
   }
 
   componentWillUnmount() {
-    // clearAllBodyScrollLocks();
+    clearAllBodyScrollLocks();
     clearTimeout(this.convFrameDisplayTimeout);
     clearTimeout(this.msgBubbleFrameDisplayTimeout);
   }
 
   render() {
-    // for dev & test
-    // ${document.head.innerHTML}
-    // for deployment
-    // ${ advanceSetting.styleDependencies && advanceSetting.styleDependencies.map(url => { return `<link rel="stylesheet" href=${url} />` }) }
-    const { advanceSetting } = this.props;
+    const {advanceSetting} = this.props;
     const initialFrameContent = () => {
       return `<!DOCTYPE html>
         <html>
           <head>
-            ${ advanceSetting.styleDependencies && advanceSetting.styleDependencies.map(url => { return `<link rel="stylesheet" href=${url} />` }) }
+            ${
+              advanceSetting.styleDependencies
+                ? advanceSetting.styleDependencies.map(url => {
+                    return `<link rel="stylesheet" href=${url} />`;
+                  })
+                : document.head.innerHTML
+            }
             <style>
               body {
                 margin: 0;
@@ -92,14 +96,24 @@ class WidgetLayout extends Component {
                 font-family: -apple-system,BlinkMacSystemFont,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",lucida,"Segoe UI",Verdana,"Helvetica Neue",Arial,sans-serif;
                 overflow:hidden;
               }
-              .rcw-launcher {
-                background-color: ${advanceSetting.launcher.bgColor};
+              ${
+                advanceSetting.launcher && advanceSetting.launcher.bgColor
+                  && (
+                    `.rcw-launcher {
+                      background-color: ${advanceSetting.launcher.bgColor};
+                    }`
+                  )
               }
-              .rcw-conversation-container .rcw-header {
-                background-color: ${advanceSetting.header.bgColor};
-              }
-              .rcw-conversation-container .rcw-close-button {
-                background-color: ${advanceSetting.header.bgColor};
+              ${
+                advanceSetting.header && advanceSetting.header.bgColor
+                  && (
+                    `.rcw-conversation-container .rcw-header {
+                      background-color: ${advanceSetting.header.bgColor};
+                    }
+                    .rcw-conversation-container .rcw-close-button {
+                      background-color: ${advanceSetting.header.bgColor};
+                    }`
+                  )
               }
             </style>
           </head>
@@ -108,13 +122,18 @@ class WidgetLayout extends Component {
           </body>
         </html>`;
     };
-    let launcherImgStyle = (advanceSetting.launcher && advanceSetting.launcher.img ) ? 0 : "-20px";
+    let launcherImgStyle =
+      advanceSetting.launcher && advanceSetting.launcher.img ? 0 : '-20px';
     return (
-      <div className={`rcw-widget-container ${this.props.showChat ? "rcw-opened" : "" } ${this.props.showBubble ? "rcw-msg-bubble-show" : "" }`} >
+      <div
+        className={`rcw-widget-container ${
+          this.props.showChat ? 'rcw-opened' : ''
+        } ${this.props.showBubble ? 'rcw-msg-bubble-show' : ''}`}
+      >
         <Frame
           initialContent={initialFrameContent()}
           id="rcw-conv-frame"
-          style={{ opacity: 0, display: this.state.convFrameDisplay }}
+          style={{opacity: 0, display: this.state.convFrameDisplay}}
           aria-live="polite"
         >
           <Conversation
@@ -130,20 +149,24 @@ class WidgetLayout extends Component {
             disabledInput={this.props.disabledInput}
             autofocus={this.props.autofocus}
             titleAvatar={this.props.titleAvatar}
-            advanceSetting={this.props.advanceSetting}
+            brand={this.props.advanceSetting.brand}
           />
         </Frame>
         <Frame
           initialContent={initialFrameContent()}
           id="rcw-msg-bubble-frame"
-          style={{ opacity: 0, display: this.state.msgBubbleFrameDisplay, marginBottom: launcherImgStyle }}
+          style={{
+            opacity: 0,
+            display: this.state.msgBubbleFrameDisplay,
+            marginBottom: launcherImgStyle,
+          }}
           aria-live="polite"
         >
           <MessageBubble
-            toggleChat={this.props.onToggleConversation}
-            onCloseMessageBubble={this.props.onCloseMessageBubble}
-            titleAvatar={this.props.titleAvatar}
-            advanceSetting={this.props.advanceSetting}
+            openChat={this.props.onToggleConversation}
+            onClose={this.props.onCloseMessageBubble}
+            headAvatar={this.props.advanceSetting.bubble.avatar}
+            content={this.props.advanceSetting.bubble.content}
           />
         </Frame>
         <Frame
@@ -183,11 +206,11 @@ WidgetLayout.propTypes = {
   autofocus: PropTypes.bool,
   customLauncher: PropTypes.func,
   advanceSetting: PropTypes.object,
-  onCloseMessageBubble: PropTypes.func
+  onCloseMessageBubble: PropTypes.func,
 };
 
 export default connect(store => ({
-  showChat: store.behavior.get("showChat"),
-  showBubble: store.behavior.get("showBubble"),
-  disabledInput: store.behavior.get("disabledInput")
+  showChat: store.behavior.get('showChat'),
+  showBubble: store.behavior.get('showBubble'),
+  disabledInput: store.behavior.get('disabledInput'),
 }))(WidgetLayout);

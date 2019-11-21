@@ -24,7 +24,7 @@
   }
 }
 
-.rcw-branding {
+.rcw-brand {
   @include hover-bg;
   // position: absolute;
   // bottom: 7px;
@@ -61,7 +61,7 @@
   .rcw-sender {
     border-radius: 0;
   }
-  .rcw-branding {
+  .rcw-brand {
     display: none;
     z-index: -100;
     pointer-events: none;
