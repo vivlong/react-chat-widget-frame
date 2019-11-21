@@ -44,3 +44,7 @@ export function setQuickButtons(buttons) {
 export function showMsgBubble() {
   store.dispatch(actions.showMsgBubble());
 }
+
+export function isMsgBubbleShown(){
+  return store.getState().behavior.get('showBubble');
+}

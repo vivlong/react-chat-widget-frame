@@ -10,7 +10,8 @@ import {
   dropMessages,
   isWidgetOpened,
   setQuickButtons,
-  showMsgBubble
+  showMsgBubble,
+  isMsgBubbleShown,
 } from './src/store/dispatcher';
 
 export {
@@ -25,5 +26,6 @@ export {
   dropMessages,
   isWidgetOpened,
   setQuickButtons,
-  showMsgBubble
+  showMsgBubble,
+  isMsgBubbleShown,
 };
