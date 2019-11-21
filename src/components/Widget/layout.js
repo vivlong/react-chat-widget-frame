@@ -96,25 +96,19 @@ class WidgetLayout extends Component {
                 font-family: -apple-system,BlinkMacSystemFont,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",lucida,"Segoe UI",Verdana,"Helvetica Neue",Arial,sans-serif;
                 overflow:hidden;
               }
-              ${
-                advanceSetting.launcher && advanceSetting.launcher.bgColor
-                  && (
-                    `.rcw-launcher {
+              ${advanceSetting.launcher &&
+                advanceSetting.launcher.bgColor &&
+                `.rcw-launcher {
                       background-color: ${advanceSetting.launcher.bgColor};
-                    }`
-                  )
-              }
-              ${
-                advanceSetting.header && advanceSetting.header.bgColor
-                  && (
-                    `.rcw-conversation-container .rcw-header {
+                    }`}
+              ${advanceSetting.header &&
+                advanceSetting.header.bgColor &&
+                `.rcw-conversation-container .rcw-header {
                       background-color: ${advanceSetting.header.bgColor};
                     }
                     .rcw-conversation-container .rcw-close-button {
                       background-color: ${advanceSetting.header.bgColor};
-                    }`
-                  )
-              }
+                    }`}
             </style>
           </head>
           <body>
@@ -149,7 +143,7 @@ class WidgetLayout extends Component {
             disabledInput={this.props.disabledInput}
             autofocus={this.props.autofocus}
             titleAvatar={this.props.titleAvatar}
-            brand={this.props.advanceSetting.brand}
+            brand={this.props.advanceSetting.brand || null}
           />
         </Frame>
         <Frame
@@ -162,12 +156,14 @@ class WidgetLayout extends Component {
           }}
           aria-live="polite"
         >
-          <MessageBubble
-            openChat={this.props.onToggleConversation}
-            onClose={this.props.onCloseMessageBubble}
-            headAvatar={this.props.advanceSetting.bubble.avatar}
-            content={this.props.advanceSetting.bubble.content}
-          />
+          {this.props.advanceSetting.bubble && (
+            <MessageBubble
+              openChat={this.props.onToggleConversation}
+              onClose={this.props.onCloseMessageBubble}
+              headAvatar={this.props.advanceSetting.bubble.avatar || null}
+              content={this.props.advanceSetting.bubble.content || null}
+            />
+          )}
         </Frame>
         <Frame
           initialContent={initialFrameContent()}
@@ -180,7 +176,7 @@ class WidgetLayout extends Component {
                 <Launcher
                   toggle={this.props.onToggleConversation}
                   badge={this.props.badge}
-                  advanceSetting={this.props.advanceSetting}
+                  advance={this.props.advanceSetting.launcher || null}
                 />
               )}
         </Frame>
