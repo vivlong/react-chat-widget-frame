@@ -37,7 +37,7 @@ class Widget extends Component {
   };
 
   closeMessageBubble = () => {
-    this.props.dispatch(showMsgBubble());
+    this.props.dispatch(showMsgBubble(null));
   };
 
   render() {

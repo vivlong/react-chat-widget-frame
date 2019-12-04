@@ -77,7 +77,7 @@ class WidgetLayout extends Component {
   }
 
   render() {
-    const {advanceSetting} = this.props;
+    const {advanceSetting, bubbleObj} = this.props;
     const initialFrameContent = () => {
       return `<!DOCTYPE html>
         <html>
@@ -143,7 +143,7 @@ class WidgetLayout extends Component {
             disabledInput={this.props.disabledInput}
             autofocus={this.props.autofocus}
             titleAvatar={this.props.titleAvatar}
-            brand={this.props.advanceSetting.brand || null}
+            brand={advanceSetting.brand || null}
           />
         </Frame>
         <Frame
@@ -156,12 +156,12 @@ class WidgetLayout extends Component {
           }}
           aria-live="polite"
         >
-          {this.props.advanceSetting.bubble && (
+          {this.props.showBubble && (
             <MessageBubble
               openChat={this.props.onToggleConversation}
               onClose={this.props.onCloseMessageBubble}
-              headAvatar={this.props.advanceSetting.bubble.avatar || null}
-              content={this.props.advanceSetting.bubble.content || null}
+              headAvatar={(bubbleObj != null && bubbleObj.avatar) || advanceSetting.bubble.avatar || null}
+              content={(bubbleObj != null && bubbleObj.content) || advanceSetting.bubble.content || null}
             />
           )}
         </Frame>
@@ -176,7 +176,7 @@ class WidgetLayout extends Component {
                 <Launcher
                   toggle={this.props.onToggleConversation}
                   badge={this.props.badge}
-                  advance={this.props.advanceSetting.launcher || null}
+                  advance={advanceSetting.launcher || null}
                 />
               )}
         </Frame>
@@ -208,5 +208,6 @@ WidgetLayout.propTypes = {
 export default connect(store => ({
   showChat: store.behavior.get('showChat'),
   showBubble: store.behavior.get('showBubble'),
+  bubbleObj: store.behavior.get('bubbleObj'),
   disabledInput: store.behavior.get('disabledInput'),
 }))(WidgetLayout);

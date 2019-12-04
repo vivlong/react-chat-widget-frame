@@ -69,6 +69,13 @@ export function setQuickButtons(buttons) {
 
 export function showMsgBubble() {
   return {
-    type: actions.SHOW_MSG_BUBBLE
+    type: actions.SHOW_MSG_BUBBLE,
+  }
+}
+
+export function setMsgBubble(object) {
+  return {
+    type: actions.SET_MSG_BUBBLE,
+    object
   }
 }
