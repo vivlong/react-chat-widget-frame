@@ -6,7 +6,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
-  font-family: -apple-system,BlinkMacSystemFont,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",lucida,"Segoe UI",Verdana,"Helvetica Neue",Arial,sans-serif;
+  // font-family: -apple-system,BlinkMacSystemFont,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",lucida,"Segoe UI",Verdana,"Helvetica Neue",Arial,sans-serif;
 }
 
 ::-webkit-scrollbar {
@@ -56,6 +56,7 @@ button.active.focus {
   position: fixed;
   right: 0;
   z-index: 9999;
+  font-family: -apple-system,BlinkMacSystemFont,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",lucida,"Segoe UI",Verdana,"Helvetica Neue",Arial,sans-serif;
 }
 
 .rcw-opened {
